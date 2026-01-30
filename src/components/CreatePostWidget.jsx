@@ -1,11 +1,13 @@
 import { useState, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
+import { useToast } from '../context/ToastContext';
 import { API_BASE_URL } from '../config';
 import './CreatePostWidget.css';
 
 const CreatePostWidget = ({ onPostCreated }) => {
     const { user } = useAuth();
+    const { addToast } = useToast();
     const [description, setDescription] = useState('');
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [previews, setPreviews] = useState([]);
@@ -55,10 +57,13 @@ const CreatePostWidget = ({ onPostCreated }) => {
                 const rawPost = response.data.data;
                 const newPost = rawPost ? {
                     ...rawPost,
-                    user: {
-                        first_name: user.first_name,
-                        last_name: user.last_name
-                    },
+                    user: user,
+                    likes: [],
+                    comments: [],
+                    shares: [],
+                    likes_count: 0,
+                    comments_count: 0,
+                    shares_count: 0,
                     files: (rawPost.post_files || []).map(f => ({
                         file_path: f.startsWith('http') ? f : API_BASE_URL + `/storage/${f}`
                     }))
@@ -68,10 +73,18 @@ const CreatePostWidget = ({ onPostCreated }) => {
                     description: description,
                     created_at: new Date().toISOString(),
                     user: user,
+                    likes: [],
+                    comments: [],
+                    shares: [],
+                    likes_count: 0,
+                    comments_count: 0,
+                    shares_count: 0,
+                    is_deleted: 0,
                     files: selectedFiles.map(f => ({ file_path: URL.createObjectURL(f) }))
                 };
 
                 onPostCreated(newPost);
+                addToast("Post created successfully!");
 
                 // Reset form
                 setDescription('');
@@ -82,7 +95,7 @@ const CreatePostWidget = ({ onPostCreated }) => {
             }
         } catch (error) {
             console.error("Failed to create post", error);
-            // Optionally show error toast
+            addToast(error.response?.data?.message || "Failed to create post", "danger");
         } finally {
             setLoading(false);
         }
@@ -135,7 +148,7 @@ const CreatePostWidget = ({ onPostCreated }) => {
                         <div className="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
                             <div className="d-flex gap-3 text-secondary">
                                 <div role="button" onClick={() => fileInputRef.current?.click()} className="d-flex align-items-center gap-1 hover-bg-light p-1 rounded">
-                                    <i className="bi bi-image text-success"></i>
+                                    <i className="ti ti-photo text-success fs-4"></i>
                                     <span className="small fw-semibold">Photo/Video</span>
                                 </div>
                                 <input

@@ -70,7 +70,7 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="text-center copy-right pb-2">© 2024 Franchise Community Portal</div>
+                    <div className="text-center copy-right pb-2">© {new Date().getFullYear()} Franchise Community Portal</div>
                 </div>
             </div>
         </footer>

@@ -19,6 +19,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route element={<PrivateRoute />}>
             <Route path="/user-profile" element={<UserProfile />} />
+            <Route path="/user-profile/:id" element={<UserProfile />} />
             <Route path="/dashboard" element={<Navigate to="/user-profile" replace />} />
           </Route>
         </Route>

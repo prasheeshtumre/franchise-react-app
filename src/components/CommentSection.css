@@ -1,0 +1,21 @@
+.fb-comment-section {
+    background: #fff;
+}
+
+.fb-comment-bubble {
+    max-width: fit-content;
+}
+
+.fb-comment-item {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fb-comment-input-area input:focus {
+    box-shadow: none;
+    background-color: #e4e6e9 !important;
+}

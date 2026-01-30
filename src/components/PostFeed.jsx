@@ -1,27 +1,26 @@
 import { useState, useEffect } from 'react';
-import PostItem from './PostItem';
+import PostCard from './PostCard';
 import api from '../services/api';
 import { API_BASE_URL } from '../config';
 import './PostFeed.css';
 
-const PostFeed = ({ newPosts }) => {
+const PostFeed = ({ newPosts, userId }) => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
     // Initial fetch
     useEffect(() => {
         const fetchPosts = async () => {
+            setLoading(true);
             try {
-                const response = await api.get('/api/user/post/get/3');
+                const url = userId ? `/api/user/${userId}/posts` : '/api/user/post/get';
+                { console.log(url) }
+                const response = await api.get(url);
                 if (response.data.status === true) {
                     const mappedPosts = response.data.data.map(post => ({
                         ...post,
-                        user: {
-                            first_name: post.user?.first_name || 'User',
-                            last_name: post.user?.last_name || ''
-                        },
                         files: (post.post_files || []).map(f => ({
-                            file_path: `${API_BASE_URL}/storage/${f}`
+                            file_path: f.startsWith('http') ? f : `${API_BASE_URL}/storage/${f}`
                         }))
                     }));
                     setPosts(mappedPosts);
@@ -54,7 +53,7 @@ const PostFeed = ({ newPosts }) => {
     useEffect(() => {
         if (newPosts && newPosts.length > 0) {
             setPosts(prev => {
-                // Prevent duplicates if needed
+                // Prevent duplicates
                 const ids = new Set(prev.map(p => p.id));
                 const uniqueNew = newPosts.filter(p => !ids.has(p.id));
                 return [...uniqueNew, ...prev];
@@ -62,12 +61,16 @@ const PostFeed = ({ newPosts }) => {
         }
     }, [newPosts]);
 
+    const handlePostDelete = (postId) => {
+        setPosts(prev => prev.filter(p => p.id !== postId));
+    };
+
     if (loading) return <div className="text-center py-4">Loading feed...</div>;
 
     return (
         <div className="fb-feed-container">
             {posts.map(post => (
-                <PostItem key={post.id} post={post} />
+                <PostCard key={post.id} post={post} onDelete={handlePostDelete} />
             ))}
             {posts.length === 0 && (
                 <div className="text-center text-muted py-5">

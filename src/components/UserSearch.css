@@ -1,0 +1,31 @@
+.fb-search-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.fb-search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.fb-search-item {
+    transition: background 0.2s;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.fb-search-item:hover {
+    background: var(--fb-hover);
+}
+
+.fb-search-bar input::placeholder {
+    color: #8a8d91;
+}

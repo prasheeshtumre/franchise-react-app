@@ -3,17 +3,22 @@ import Header from '../components/Header';
 import UserHeader from '../components/UserHeader';
 import Footer from '../components/Footer';
 import { useAuth } from '../context/AuthContext';
+import './MainLayout.css';
 
 const MainLayout = () => {
     const { user } = useAuth();
 
     return (
-        <div className="d-flex flex-column min-vh-100">
-            {user ? <UserHeader /> : <Header />}
-            <main className="flex-grow-1">
-                <Outlet />
-            </main>
-            <Footer />
+        <div className="fb-layout">
+            <div className="fb-header-wrapper">
+                {user ? <UserHeader /> : <Header />}
+            </div>
+            <div className="fb-main-wrapper">
+                <main className="fb-content-container">
+                    <Outlet />
+                </main>
+                <Footer />
+            </div>
         </div>
     );
 };

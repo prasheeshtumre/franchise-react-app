@@ -4,7 +4,6 @@
     box-shadow: var(--fb-shadow);
     margin-bottom: 16px;
     border: none;
-    overflow: hidden;
 }
 
 .fb-post-header {
@@ -48,4 +47,13 @@
 
 .fb-action-btn:hover {
     background: var(--fb-hover);
+}
+
+.fb-stats-row {
+    border-bottom: 1px solid var(--fb-divider);
+    margin-bottom: 4px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }

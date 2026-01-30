@@ -9,7 +9,7 @@ const Header = () => {
     };
 
     return (
-        <header className="fixed-top bg-white shadow-sm">
+        <header className="">
             <div className="container">
                 <nav className="navbar navbar-expand-lg navbar-light lp-nav-bar p-2">
                     <div className="container-fluid p-0 d-flex justify-content-between align-items-center">

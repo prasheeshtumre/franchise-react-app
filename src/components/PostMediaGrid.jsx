@@ -3,17 +3,14 @@ import './PostMediaGrid.css';
 
 const PostMediaGrid = ({ files }) => {
     const [activeIndex, setActiveIndex] = useState(null);
-
-    if (!files || files.length === 0) return null;
-
-    const count = files.length;
-    const displayFiles = files.slice(0, 4); // Grid shows max 4 containers
-    const remainingCount = count - 4;
+    const count = files?.length || 0;
 
     const isVideo = (path) => {
         if (!path) return false;
         return typeof path === 'string' && path.match(/\.(mp4|webm|ogg|quicktime)$/i);
     };
+
+    const closeLightbox = useCallback(() => setActiveIndex(null), []);
 
     const handleMediaClick = (e, index) => {
         e.preventDefault();
@@ -21,16 +18,18 @@ const PostMediaGrid = ({ files }) => {
         setActiveIndex(index);
     };
 
-    const closeLightbox = () => setActiveIndex(null);
-
     const goToNext = useCallback((e) => {
         if (e) e.stopPropagation();
-        setActiveIndex((prev) => (prev + 1) % count);
+        if (count > 0) {
+            setActiveIndex((prev) => (prev + 1) % count);
+        }
     }, [count]);
 
     const goToPrev = useCallback((e) => {
         if (e) e.stopPropagation();
-        setActiveIndex((prev) => (prev - 1 + count) % count);
+        if (count > 0) {
+            setActiveIndex((prev) => (prev - 1 + count) % count);
+        }
     }, [count]);
 
     useEffect(() => {
@@ -43,7 +42,12 @@ const PostMediaGrid = ({ files }) => {
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [activeIndex, goToNext, goToPrev]);
+    }, [activeIndex, goToNext, goToPrev, closeLightbox]);
+
+    if (!files || files.length === 0) return null;
+
+    const displayFiles = files.slice(0, 4); // Grid shows max 4 containers
+    const remainingCount = count - 4;
 
     const activeFile = activeIndex !== null ? (files[activeIndex]?.file_path || files[activeIndex]) : null;
 
@@ -86,10 +90,10 @@ const PostMediaGrid = ({ files }) => {
                     {count > 1 && (
                         <>
                             <button className="fb-media-nav-btn fb-media-nav-prev" onClick={goToPrev}>
-                                <i className="bi bi-chevron-left"></i>
+                                <i className="ti ti-chevron-left"></i>
                             </button>
                             <button className="fb-media-nav-btn fb-media-nav-next" onClick={goToNext}>
-                                <i className="bi bi-chevron-right"></i>
+                                <i className="ti ti-chevron-right"></i>
                             </button>
                         </>
                     )}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import UserSearch from './UserSearch';
 import './UserHeader.css';
 
 const UserHeader = () => {
@@ -22,14 +23,8 @@ const UserHeader = () => {
                     </div>
 
                     {/* Search Bar */}
-                    <div className="search-bar d-none d-md-flex align-items-center bg-light rounded-pill px-3 py-2" style={{ width: '400px' }}>
-                        <input type="search" className="form-control border-0 bg-transparent" placeholder="Search for Franchises" style={{ outline: 'none' }} />
-                        <div className="action-btns d-flex gap-2 text-muted">
-                            <i className="bi bi-sliders"></i>
-                            <div className="srch-icon-btn">
-                                <i className="bi bi-search"></i>
-                            </div>
-                        </div>
+                    <div className="d-none d-md-block">
+                        <UserSearch />
                     </div>
 
                     <div className="right-part d-flex align-items-center gap-3">
