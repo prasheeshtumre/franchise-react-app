@@ -1,0 +1,84 @@
+.pf-nav {
+    padding: 20px 20px;
+    background-color: white;
+}
+
+.logo-box {
+    height: 60px;
+    width: 60px;
+}
+
+.logo-box img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-profile-icon-nav {
+    height: 48px;
+    width: 48px;
+}
+
+.user-profile-icon-nav img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.search-bar {
+    height: 50px;
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0 16px;
+    width: 36%;
+    margin-left: 140px;
+}
+
+.action-btns {
+    gap: 16px;
+    align-items: center;
+}
+
+.action-btns .srch-icon-btn {
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.srch-icon-btn svg path {
+    stroke: white;
+}
+
+.search-bar input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    width: 100%;
+}
+
+.right-part {
+    gap: 24px;
+    position: relative;
+}
+
+.right-part .nav-icons svg {
+    margin-right: 16px;
+}
+
+/* Dropdown Menu Styles (from .pr-menu) */
+.user-dropdown-menu {
+    position: absolute;
+    padding: 24px;
+    border-radius: 4px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.091);
+    box-sizing: border-box;
+    background-color: white;
+    top: 120%;
+    right: 0;
+    width: 300px;
+    z-index: 1000;
+}

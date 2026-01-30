@@ -1,0 +1,16 @@
+.fb-post-card {
+    background: var(--fb-card-bg);
+    border-radius: var(--fb-radius);
+    box-shadow: var(--fb-shadow);
+    margin-bottom: 16px;
+    border: none;
+}
+
+.hover-bg-light:hover {
+    background-color: var(--fb-hover);
+}
+
+.lp-form-holder1 {
+    width: 100% !important;
+    margin-bottom: 1rem;
+}

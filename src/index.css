@@ -1,68 +1,104 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  --fb-bg: #f0f2f5;
+  --fb-card-bg: #ffffff;
+  --fb-primary: #1877f2;
+  --fb-text-primary: #050505;
+  --fb-text-secondary: #65676b;
+  --fb-divider: #ced0d4;
+  --fb-hover: #f2f2f2;
+  --fb-radius: 8px;
+  --fb-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--fb-bg);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Global Resets and Responsive Overrides */
+.lp-bg-img {
+  height: auto !important;
+  min-height: 100vh;
+  padding-top: 80px;
+  background-position: center;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+@media (max-width: 768px) {
+  .lp-hero-content {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .lp-txt-content {
+    margin-top: 2rem !important;
+  }
+
+  .lp-txt-content p {
+    width: 100% !important;
+  }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.lp-form-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.navbar-brand img {
+  max-height: 50px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* Adjust Hero Content margins for mobile */
+@media (max-width: 768px) {
+  .lp-hero-content {
+    text-align: center;
+    margin-bottom: 2rem;
   }
-  a:hover {
-    color: #747bff;
+
+  .lp-txt-content {
+    margin-top: 2rem !important;
+    /* Reduce huge top margin */
   }
-  button {
-    background-color: #f9f9f9;
+
+  .lp-txt-content p {
+    width: 100% !important;
+    /* Full width text on mobile */
   }
+}
+
+/* Enhance Form responsiveness */
+.lp-form-holder1 {
+  width: 100% !important;
+  /* Full width inputs on mobile */
+  margin-bottom: 1rem;
+}
+
+.lp-form-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  /* Center form */
+}
+
+/* Menu Fixes */
+.navbar-brand img {
+  max-height: 50px;
+}
+
+/* Ensure images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
 }

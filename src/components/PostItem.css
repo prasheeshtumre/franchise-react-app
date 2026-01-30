@@ -1,0 +1,51 @@
+.fb-post-card {
+    background: var(--fb-card-bg);
+    border-radius: var(--fb-radius);
+    box-shadow: var(--fb-shadow);
+    margin-bottom: 16px;
+    border: none;
+    overflow: hidden;
+}
+
+.fb-post-header {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.fb-post-content {
+    padding: 4px 16px 12px;
+    color: var(--fb-text-primary);
+    font-size: 0.9375rem;
+    line-height: 1.3333;
+}
+
+.fb-post-footer {
+    padding: 4px 16px;
+}
+
+.fb-action-row {
+    display: flex;
+    border-top: 1px solid var(--fb-divider);
+    padding: 4px 0;
+}
+
+.fb-action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px;
+    border-radius: 4px;
+    border: none;
+    background: transparent;
+    color: var(--fb-text-secondary);
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.fb-action-btn:hover {
+    background: var(--fb-hover);
+}
